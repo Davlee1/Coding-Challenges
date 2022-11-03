@@ -1,4 +1,4 @@
-Arguments Optional
+/*Arguments Optional
 
 Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.
 
@@ -12,7 +12,7 @@ sumTwoAnd(3) returns 5.
 
 If either argument isn't a valid number, return undefined.
 
-==============Completed: 11:50 PM 10/25/2022======================================
+==============Completed: 11:50 PM 10/25/2022======================================*/
 function addTogether() {
 const [first, second] = arguments;
 
