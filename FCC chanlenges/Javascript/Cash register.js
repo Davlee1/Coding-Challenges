@@ -69,16 +69,67 @@ function checkCashRegister(price, cash, cid) {
       changeGiven[8][1] += 100;
       change -= 100;
       cid[b][1] -= 100;
+      continue;
     }
+    if(cid[b][0] =="TWENTY" && change >= cid[b][1]){
+      changeGiven[7][1] += 20;
+      change -= 20;
+      cid[b][1] -= 20;
+      continue;
+    }
+    if(cid[b][0] =="TEN" && change >= cid[b][1]){
+      changeGiven[6][1] += 10;
+      change -= 10;
+      cid[b][1] -= 10;
+      continue;
+    }
+    if(cid[b][0] =="FIVE" && change >= cid[b][1]){
+      changeGiven[5][1] += 5;
+      change -= 5;
+      cid[b][1] -= 5;
+      continue;
+    }
+    if(cid[b][0] =="ONE" && change >= cid[b][1]){
+      changeGiven[4][1] += 1;
+      change -= 1;
+      cid[b][1] -= 1;
+      continue;
+    }
+    if(cid[b][0] =="QUARTER" && change >= cid[b][1]){
+      changeGiven[3][1] += .25;
+      change -= .25;
+      cid[b][1] -= .25  ;
+      continue;
+    }
+    if(cid[b][0] =="DIME" && change >= cid[b][1]){
+      changeGiven[2][1] += .1;
+      change -= .1;
+      cid[b][1] -= .1;
+      continue;
+    }
+    if(cid[b][0] =="NICKEL" && change >= cid[b][1]){
+      changeGiven[1][1] += .05;
+      change -= .05;
+      cid[b][1] -= .5;
+      continue;
+    }
+    if(cid[b][0] =="PENNY" && change >= cid[b][1]){
+      changeGiven[0][1] += .01;
+      change -= .01;
+      cid[b][1] -= .01;
+      continue;
+    }
+    //returns "INSUFFICIENT_FUNDS" if change can't be obtained
+    return {status: "INSUFFICIENT_FUNDS", change: []}
   }
 
   for(let c = 0; c < changeGiven.length; c++){
     if(changeGiven[c][1] == 0){
-      
+      changeGiven.splice(c,1);
     }
 
   }
-
+if(chang)
 
 
 
