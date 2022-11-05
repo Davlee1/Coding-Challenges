@@ -43,11 +43,19 @@ See below for an example of a cash-in-drawer array:
 function checkCashRegister(price, cash, cid) {
   let tid;
   let change = cash - price;
-  let changeGiven = [];
+  let changeGiven = [  ["PENNY", 0],
+  ["NICKEL", 0],
+  ["DIME", 0],
+  ["QUARTER", 0],
+  ["ONE", 0],
+  ["FIVE", 0],
+  ["TEN", 0],
+  ["TWENTY", 0],
+  ["ONE HUNDRED", 0]];
 
 //counts total in drawer
-    for(let x = 0; x < cid.length; x++){
-        tid += cid[x][1];
+    for(let a = 0; a < cid.length; a++){
+        tid += cid[a][1];
     }
 
 //checks if there is enough in the drawer or if enough cash was given
@@ -55,10 +63,17 @@ function checkCashRegister(price, cash, cid) {
       return {status: "INSUFFICIENT_FUNDS", change: []}
     }
 
-//converts change int to arr with coins and bills
-  for(let x = cid.length; x > 0; x--){
-    
+//adds change in coins and bills to changeGiven
+  while(change > 0){
+    if(cid[b][0] =="ONE HUNDRED" && change >= cid[b][1]){
+      changeGiven[8][1] += 100;
+      change -= 100;
+      cid[b][1] -= 100;
+    }
   }
+
+  for(let c = 0; c < changeGiven.length; )
+
 
 
   return change;
