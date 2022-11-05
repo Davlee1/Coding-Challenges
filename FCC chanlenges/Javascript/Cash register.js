@@ -72,7 +72,13 @@ function checkCashRegister(price, cash, cid) {
     }
   }
 
-  for(let c = 0; c < changeGiven.length; )
+  for(let c = 0; c < changeGiven.length; c++){
+    if(changeGiven[c][1] == 0){
+      
+    }
+
+  }
+
 
 
 
