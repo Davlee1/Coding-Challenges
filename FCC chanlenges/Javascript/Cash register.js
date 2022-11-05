@@ -38,12 +38,27 @@ See below for an example of a cash-in-drawer array:
 ]
 
 
-====================in-progress: 6:32 PM 11/4/2022================================*/
+====================in-progress: 3:20 PM 11/5/2022================================*/
 
 function checkCashRegister(price, cash, cid) {
-  let change;
+  let tid;
+  let change = cash - price;
+  let changeGiven = [];
 
+//counts total in drawer
+    for(let x = 0; x < cid.length; x++){
+        tid += cid[x][1];
+    }
+
+//checks if there is enough in the drawer or if enough cash was given
+    if(change > tid | change < 0){
+      return {status: "INSUFFICIENT_FUNDS", change: []}
+    }
+
+//converts change int to arr with coins and bills
   
+
+
   return change;
 }
 
