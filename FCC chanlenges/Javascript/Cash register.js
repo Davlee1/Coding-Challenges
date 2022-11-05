@@ -56,7 +56,9 @@ function checkCashRegister(price, cash, cid) {
     }
 
 //converts change int to arr with coins and bills
-  
+  for(let x = cid.length; x > 0; x--){
+    
+  }
 
 
   return change;
