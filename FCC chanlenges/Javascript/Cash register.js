@@ -41,8 +41,8 @@ See below for an example of a cash-in-drawer array:
 ====================in-progress: 11:37 PM 11/6/2022================================*/
 
 function checkCashRegister(price, cash, cid) {
-  let tid;
-  let theChange = cash - price;
+  let tid = 0;
+  let theChange = +(cash - price).toFixed(2);
   let changeGiven = [  ["PENNY", 0],
   ["NICKEL", 0],
   ["DIME", 0],
@@ -52,6 +52,7 @@ function checkCashRegister(price, cash, cid) {
   ["TEN", 0],
   ["TWENTY", 0],
   ["ONE HUNDRED", 0]];
+
 
     //counts total in drawer
     for(let a = 0; a < cid.length; a++){
@@ -130,11 +131,11 @@ function checkCashRegister(price, cash, cid) {
         }
       else{break;} 
     }
-    while(theChange >= .01){
-      if(cid[0][1] >= .01){
-        changeGiven[0][1] += .01;
-        theChange -= .01;
-        cid[0][1] -= .01;
+    while(theChange >= 0.01){
+      if(cid[0][1] >= theChange){
+        changeGiven[0][1] += theChange;
+        theChange -= theChange;
+        cid[0][1] -= theChange;
         }
       else{break;} 
     }
@@ -147,15 +148,7 @@ function checkCashRegister(price, cash, cid) {
     return "ERROR: SOMETHING WENT HORRIBLY WRONG"
   }
   
-  let c = 0;
-  while(c < changeGiven.length){
-    if(changeGiven[c][1] == 0){
-      changeGiven.splice(c,1);
-    }
-    else{
-      c++;
-    }
-  }
+
 
   //resets change to initial value
   theChange = cash - price;
@@ -163,6 +156,15 @@ function checkCashRegister(price, cash, cid) {
   if(theChange == tid)
     return {status: "CLOSED", change: changeGiven};
   else{
+      let c = 0;
+      while(c < changeGiven.length){
+        if(changeGiven[c][1] == 0){
+          changeGiven.splice(c,1);
+        }
+        else{
+          c++;
+        }
+      }
     return {status: "OPEN", change: changeGiven};
   }
 }
