@@ -38,20 +38,21 @@ See below for an example of a cash-in-drawer array:
 ]
 
 
-====================in-progress: 11:37 PM 11/6/2022================================*/
+====================Completed: 1:02 AM 11/7/2022================================*/
 
 function checkCashRegister(price, cash, cid) {
   let tid = 0;
   let theChange = +(cash - price).toFixed(2);
-  let changeGiven = [  ["PENNY", 0],
-  ["NICKEL", 0],
-  ["DIME", 0],
-  ["QUARTER", 0],
-  ["ONE", 0],
-  ["FIVE", 0],
-  ["TEN", 0],
+  //return theChange;
+  let changeGiven = [  ["ONE HUNDRED", 0],
   ["TWENTY", 0],
-  ["ONE HUNDRED", 0]];
+  ["TEN", 0],
+  ["FIVE", 0],
+  ["ONE", 0],
+  ["QUARTER", 0],
+  ["DIME", 0],
+  ["NICKEL", 0],
+  ["PENNY", 0]];
 
 
     //counts total in drawer
@@ -69,7 +70,7 @@ function checkCashRegister(price, cash, cid) {
   
     while(theChange >= 100){
       if(cid[8][1] >= 100){
-        changeGiven[8][1] += 100;
+        changeGiven[0][1] += 100;
         theChange -= 100;
         cid[8][1] -= 100;
         }
@@ -77,7 +78,7 @@ function checkCashRegister(price, cash, cid) {
     }
     while(theChange >= 20){
       if(cid[7][1] >= 20){
-        changeGiven[7][1] += 20;
+        changeGiven[1][1] += 20;
         theChange -= 20;
         cid[7][1] -= 20;
         }
@@ -85,7 +86,7 @@ function checkCashRegister(price, cash, cid) {
     }
     while(theChange >= 10){
       if(cid[6][1] >= 10){
-        changeGiven[6][1] += 10;
+        changeGiven[2][1] += 10;
         theChange -= 10;
         cid[6][1] -= 10;
         }
@@ -93,7 +94,7 @@ function checkCashRegister(price, cash, cid) {
     }
     while(theChange >= 5){
       if(cid[5][1] >= 5){
-        changeGiven[5][1] += 5;
+        changeGiven[3][1] += 5;
         theChange -= 5;
         cid[5][1] -= 5;
         }
@@ -109,7 +110,7 @@ function checkCashRegister(price, cash, cid) {
     }
     while(theChange >= .25){
       if(cid[3][1] >= .25){
-        changeGiven[3][1] += .25;
+        changeGiven[5][1] += .25;
         theChange -= .25;
         cid[3][1] -= .25;
         }
@@ -117,28 +118,27 @@ function checkCashRegister(price, cash, cid) {
     }
     while(theChange >= .1){
       if(cid[2][1] >= .1){
-        changeGiven[2][1] += .1;
+        changeGiven[6][1] += .1;
         theChange -= .1;
         cid[2][1] -= .1;
         }
       else{break;} 
     }
     while(theChange >= .05){
+
       if(cid[1][1] >= .05){
-        changeGiven[1][1] += .05;
+        changeGiven[7][1] += .05;
         theChange -= .05;
         cid[1][1] -= .05;
         }
       else{break;} 
     }
-    while(theChange >= 0.01){
-      if(cid[0][1] >= theChange){
-        changeGiven[0][1] += theChange;
+    if(theChange >= 0.01 && cid[0][1] >= theChange){
+        changeGiven[8][1] += +theChange.toFixed(2);
         theChange -= theChange;
         cid[0][1] -= theChange;
-        }
-      else{break;} 
-    }
+        } 
+    
   
   if(theChange > 0){
     return {status: "INSUFFICIENT_FUNDS", change: []}
@@ -154,7 +154,7 @@ function checkCashRegister(price, cash, cid) {
   theChange = cash - price;
 
   if(theChange == tid)
-    return {status: "CLOSED", change: changeGiven};
+    return {status: "CLOSED", change: cid};
   else{
       let c = 0;
       while(c < changeGiven.length){
