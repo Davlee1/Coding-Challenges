@@ -38,7 +38,7 @@ See below for an example of a cash-in-drawer array:
 ]
 
 
-====================in-progress: 11:57 PM 11/5/2022================================*/
+====================in-progress: 11:37 PM 11/6/2022================================*/
 
 function checkCashRegister(price, cash, cid) {
   let tid;
@@ -53,93 +53,99 @@ function checkCashRegister(price, cash, cid) {
   ["TWENTY", 0],
   ["ONE HUNDRED", 0]];
 
-//counts total in drawer
+    //counts total in drawer
     for(let a = 0; a < cid.length; a++){
         tid += cid[a][1];
     }
 
-//checks if there is enough in the drawer or if enough cash was given
+  //checks if there is enough in the drawer or if enough cash was given
     if(theChange > tid | theChange < 0){
       return {status: "INSUFFICIENT_FUNDS", change: []}
     }
 
-//adds change in coins and bills to changeGiven
+  //adds change in coins and bills to changeGiven
   
   
     while(theChange >= 100){
-      if(cid[8][1] < 100){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-
-      changeGiven[8][1] += 100;
-      theChange -= 100;
-      cid[8][1] -= 100; 
+      if(cid[8][1] >= 100){
+        changeGiven[8][1] += 100;
+        theChange -= 100;
+        cid[8][1] -= 100;
+        }
+      else{break;} 
     }
-    
     while(theChange >= 20){
-      if(cid[7][1] < 20){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[7][1] += 20;
-      theChange -= 20;
-      cid[7][1] -= 20; 
+      if(cid[7][1] >= 20){
+        changeGiven[7][1] += 20;
+        theChange -= 20;
+        cid[7][1] -= 20;
+        }
+      else{break;} 
     }
-
     while(theChange >= 10){
-      if(cid[6][1] < 10){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[6][1] += 10;
-      theChange -= 10;
-      cid[6][1] -= 10; 
+      if(cid[6][1] >= 10){
+        changeGiven[6][1] += 10;
+        theChange -= 10;
+        cid[6][1] -= 10;
+        }
+      else{break;} 
     }
     while(theChange >= 5){
-      if(cid[5][1] < 5){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[5][1] += 5;
-      theChange -= 5;
-      cid[5][1] -= 5; 
+      if(cid[5][1] >= 5){
+        changeGiven[5][1] += 5;
+        theChange -= 5;
+        cid[5][1] -= 5;
+        }
+      else{break;} 
     }
     while(theChange >= 1){
-      if(cid[4][1] < 1){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[4][1] += 1;
-      theChange -= 1;
-      cid[4][1] -= 1; 
+      if(cid[4][1] >= 1){
+        changeGiven[4][1] += 1;
+        theChange -= 1;
+        cid[4][1] -= 1;
+        }
+      else{break;} 
     }
     while(theChange >= .25){
-      if(cid[3][1] < .25){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[3][1] += .25;
-      theChange -= .25;
-      cid[3][1] -= .25; 
+      if(cid[3][1] >= .25){
+        changeGiven[3][1] += .25;
+        theChange -= .25;
+        cid[3][1] -= .25;
+        }
+      else{break;} 
     }
     while(theChange >= .1){
-      if(cid[2][1] < .1){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[2][1] += .1;
-      theChange -= .1;
-      cid[2][1] -= .1; 
+      if(cid[2][1] >= .1){
+        changeGiven[2][1] += .1;
+        theChange -= .1;
+        cid[2][1] -= .1;
+        }
+      else{break;} 
     }
     while(theChange >= .05){
-      if(cid[1][1] < .05){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[1][1] += .05;
-      theChange -= .05;
-      cid[1][1] -= .05; 
+      if(cid[1][1] >= .05){
+        changeGiven[1][1] += .05;
+        theChange -= .05;
+        cid[1][1] -= .05;
+        }
+      else{break;} 
     }
     while(theChange >= .01){
-      if(cid[0][1] < .01){
-        return {status: "INSUFFICIENT_FUNDS", change: []}}
-        
-      changeGiven[0][1] += .01;
-      theChange -= .01;
-      cid[0][1] -= .01; 
+      if(cid[0][1] >= .01){
+        changeGiven[0][1] += .01;
+        theChange -= .01;
+        cid[0][1] -= .01;
+        }
+      else{break;} 
     }
+  
+  if(theChange > 0){
+    return {status: "INSUFFICIENT_FUNDS", change: []}
+  }
+
+  if(theChange < 0){
+    return "ERROR: SOMETHING WENT HORRIBLY WRONG"
+  }
   
   let c = 0;
   while(c < changeGiven.length){
@@ -154,11 +160,11 @@ function checkCashRegister(price, cash, cid) {
   //resets change to initial value
   theChange = cash - price;
 
-if(theChange == tid)
-  return {status: "CLOSED", change: changeGiven};
-else{
-  return {status: "OPEN", change: changeGiven};
-}
+  if(theChange == tid)
+    return {status: "CLOSED", change: changeGiven};
+  else{
+    return {status: "OPEN", change: changeGiven};
+  }
 }
 
 console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
