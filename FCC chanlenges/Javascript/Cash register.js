@@ -38,7 +38,7 @@ See below for an example of a cash-in-drawer array:
 ]
 
 
-====================in-progress: 3:20 PM 11/5/2022================================*/
+====================in-progress: 11:57 PM 11/5/2022================================*/
 
 function checkCashRegister(price, cash, cid) {
   let tid;
@@ -64,11 +64,13 @@ function checkCashRegister(price, cash, cid) {
     }
 
 //adds change in coins and bills to changeGiven
+  let b = ;
   while(theChange > 0){
     if(cid[b][0] =="ONE HUNDRED" && theChange >= cid[b][1]){
       changeGiven[8][1] += 100;
       theChange -= 100;
       cid[b][1] -= 100;
+
       continue;
     }
     if(cid[b][0] =="TWENTY" && theChange >= cid[b][1]){
